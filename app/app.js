@@ -5,7 +5,7 @@ import path from 'path';
 import { defaultPort } from './config/config';
 import mongoose from 'mongoose';
 import routes from './config/routes';
-import route from 'express-routes-mapper';
+import mapRoutes from 'express-routes-mapper';
 
 const app = express();
 const server = http.Server(app);
@@ -15,9 +15,7 @@ const db = mongoose.connect('mongodb://localhost/default');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/api', route(routes));
-
-app.use('/', routerView);
+app.use('/api', mapRoutes(routes));
 
 server.listen(port, function() {
   console.log('There we go ♕');
