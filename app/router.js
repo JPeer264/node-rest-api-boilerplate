@@ -1,6 +1,5 @@
 import path from 'path';
 import express from 'express';
-import userController from './controllers/UserController';
 const routerView = express.Router();
 
 routerView.get('/', (req, res) => {
