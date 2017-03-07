@@ -1,11 +1,14 @@
-import fs from 'fs';
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
-import path from 'path';
 import config from './config/config';
 import mongoose from 'mongoose';
-import routes from './router';
+import routes from './config/routes';
+import route from 'express-routes-mapper';
+/**
+ * Use Postman instead?
+ */
+import routerView from './router';
 
 const app = express();
 const server = http.Server(app);
@@ -15,7 +18,12 @@ const db = mongoose.connect('mongodb://localhost/default');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', routes);
+app.use('/api', route(routes));
+
+/**
+ * Use Postman instead?
+ */
+app.use('/', routerView);
 
 server.listen(port, function() {
   console.log('There we go ♕');

@@ -1,13 +1,11 @@
 import path from 'path';
 import express from 'express';
-import userController from './controllers/user-controller';
-const router = express.Router();
+import userController from './controllers/UserController';
+const routerView = express.Router();
 
-userController(router);
-
-router.get('/', (req, res) => {
+routerView.get('/', (req, res) => {
   console.log(__dirname)
   res.status(200).sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-export default router;
+export default routerView;
